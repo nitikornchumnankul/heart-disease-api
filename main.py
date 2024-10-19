@@ -5,6 +5,7 @@ from mlflow.tracking import MlflowClient
 import warnings
 import os
 import pandas as pd
+import uvicorn
 
 # Define the FastAPI instance
 app = FastAPI()
@@ -74,3 +75,9 @@ async def predict(data: PatientData):
     print("Prediction",prediction)
 
     return {"message": "Prediction successful", "prediction": prediction.tolist()}
+
+
+
+if __name__ == "__main__":
+    # Run the application using uvicorn programmatically
+    uvicorn.run(app, host="0.0.0.0", port=8000)
