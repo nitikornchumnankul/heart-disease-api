@@ -48,4 +48,5 @@ jobs:
         script: |
           export version=v1.0.${{ github.run_number }}
           cd ./heart-disease-api
+          docker-compose down -d
           docker-compose up -d
