@@ -6,9 +6,19 @@ import warnings
 import os
 import pandas as pd
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
 
 # Define the FastAPI instance
 app = FastAPI()
+
+# Allow CORS for all origins (Not recommended in production)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Create a Pydantic model to validate the input data
 class PatientData(BaseModel):
