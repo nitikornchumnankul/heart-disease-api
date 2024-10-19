@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -20,11 +20,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
@@ -42,7 +37,7 @@ jobs:
         username: ${{ secrets.VM_USER }}
         key: ${{ secrets.VM_SSH_KEY }}
         port: 22
-        script: |
-          export version=v1.0.${{ github.run_number }}
-          cd ./heart-disease-api
-          docker-compose up -d
+      run: |
+        export version=v1.0.${{ github.run_number }}
+        cd ./heart-disease-api
+        docker-compose up -d
