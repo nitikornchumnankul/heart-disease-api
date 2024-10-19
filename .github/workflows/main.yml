@@ -20,23 +20,26 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
-    - name: Build and push Docker image
       run: |
-        echo "${{ env.DOCKER_PASSWORD }}" | docker login -u "${{ env.DOCKER_USERNAME }}" --password-stdin
-        docker build -t nitikornchumnankul/heart-disease-api:v1.0.${{ github.run_number }} .
-        docker push nitikornchumnankul/heart-disease-api:v1.0.${{ github.run_number }}
-    - name: SSH to VM and deploy
-      uses: appleboy/ssh-action@v0.1.9
-      with:
-        host: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.VM_SSH_KEY }}
-        port: 22
-        script: |
-          export version=v1.0.${{ github.run_number }}
-          cd ./heart-disease-api
-          docker-compose up -d
+        echo "${{ env.DOCKER_PASSWORD }}"
+        echo "${{ env.DOCKER_USERNAME }}"
+
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v2
+
+    # - name: Build and push Docker image
+    #   run: |
+    #     echo "${{ env.DOCKER_PASSWORD }}" | docker login -u "${{ env.DOCKER_USERNAME }}" --password-stdin
+    #     docker build -t nitikornchumnankul/heart-disease-api:v1.0.${{ github.run_number }} .
+    #     docker push nitikornchumnankul/heart-disease-api:v1.0.${{ github.run_number }}
+    # - name: SSH to VM and deploy
+    #   uses: appleboy/ssh-action@v0.1.9
+    #   with:
+    #     host: ${{ secrets.VM_HOST }}
+    #     username: ${{ secrets.VM_USER }}
+    #     key: ${{ secrets.VM_SSH_KEY }}
+    #     port: 22
+    #     script: |
+    #       export version=v1.0.${{ github.run_number }}
+    #       cd ./heart-disease-api
+    #       docker-compose up -d
