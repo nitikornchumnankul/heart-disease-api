@@ -37,12 +37,13 @@ jobs:
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         docker build -t nitikornchumnankul/heart-disease-api:v1.0.${{ github.run_number }} .
         docker push nitikornchumnankul/heart-disease-api:v1.0.${{ github.run_number }}
+    
     - name: SSH to VM and deploy
-      uses: appleboy/ssh-action@v0.1.9
+      uses: appleboy/ssh-action@v1.1.0
       with:
         host: ${{ secrets.VM_HOST }}
         username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.VM_SSH_KEY }}
+        password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
           export version=v1.0.${{ github.run_number }}
