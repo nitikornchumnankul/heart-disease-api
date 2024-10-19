@@ -28,8 +28,8 @@ jobs:
 
     - name: "check echo"  
       run: |
-        echo "${{ env.DOCKER_PASSWORD }}"
-        echo "${{ env.DOCKER_USERNAME }}"
+        echo "${{ secrets.DOCKER_PASSWORD }}"
+        echo "${{ secrets.DOCKER_USERNAME }}"
 
 
     # - name: Build and push Docker image
