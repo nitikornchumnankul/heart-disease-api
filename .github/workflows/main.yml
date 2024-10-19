@@ -14,7 +14,7 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     environment: heart-disease
-    # steps:
+    steps:
     # - name: Checkout repository
     #   uses: actions/checkout@v2
 
