@@ -84,7 +84,10 @@ async def predict(data: PatientData):
     prediction = model.predict(input_data)
     print("Prediction",prediction)
 
-    return {"message": "Prediction successful", "prediction": prediction.tolist()}
+     # Interpreting the prediction for response
+    prediction_result = "No Disease" if prediction[0] == 0 else "Disease"
+
+    return {"message": "Prediction successful", "prediction": prediction_result}
 
 
 
