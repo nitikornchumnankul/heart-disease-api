@@ -1,0 +1,6 @@
+projectKey=heart-disease
+serverUrl=http://119.59.103.209:9002
+serverVersion=9.9.7.96285
+dashboardUrl=http://119.59.103.209:9002/dashboard?id=heart-disease
+ceTaskId=AZKpXiUVqU2gOb2eXCQM
+ceTaskUrl=http://119.59.103.209:9002/api/ce/task?id=AZKpXiUVqU2gOb2eXCQM
